@@ -1,26 +1,191 @@
+@import url("https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200;300;400;500;600;700&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 html,
 body {
-  padding: 0;
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+	padding: 0;
+	margin: 0;
+	font-family: "Josefin Sans", -apple-system, BlinkMacSystemFont, Segoe UI,
+		Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue,
+		sans-serif;
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+:root {
+	--black: #555;
+	--white: #fff;
+	--light: #fff; /*The brand's light color*/
+	--light-dark: #076198; /*The brand's light color in dark mode*/
+	--dark: #ecf1f4; /*The brand's dark color*/
+	/*--light-dark: #333; The brand's light color in dark mode*/
+	--dark-dark: #143549; /*The brand's dark color in dark mode.*/
+	--primary: #338fc2; /*The brand's primary color*/
+	/*--dark-dark: #000; The brand's dark color in dark mode.*/
+	--primary-alpha-11: #3390c222; /*The brand's primary color*/
+	--secondary: #01dbb4; /*The brand's secondary color*/
+	--light-text: #999;
 }
 
-* {
-  box-sizing: border-box;
+.surface-bg {
+	@apply bg-[var(--light)] dark:bg-[var(--light-dark)];
+}
+.under-bg {
+	@apply bg-[var(--dark)] dark:bg-[var(--dark-dark)];
+}
+.text-highlight {
+	@apply text-[var(--secondary)];
+}
+.text-normal {
+	@apply text-[var(--black)] dark:text-[var(--white)];
+}
+.text-muted {
+	@apply text-[var(--light-text)] dark:text-[#ccc];
+}
+.logo-sm {
+	@apply h-14;
+}
+.gradient-bg {
+	@apply transition-all duration-300 bg-gradient-to-br bg-center bg-size-200 bg-pos-100 from-[color:var(--primary)] via-[color:var(--primary)] to-[color:var(--secondary)];
+}
+.gradient-bg-effect {
+	@apply transition-all duration-300 bg-gradient-to-br bg-center bg-size-200 bg-pos-100 hover:bg-pos-0 from-[color:var(--primary)] via-[color:var(--primary)] to-[color:var(--secondary)];
+}
+.find {
+	@apply border border-red-500;
+}
+.radius-lg {
+	@apply md:rounded-[70px] rounded-[40px];
+}
+.radius-md {
+	@apply md:rounded-[30px] rounded-[20px];
+}
+.huge-text {
+	@apply shimmer lg:text-6xl sm:text-5xl text-3xl font-bold;
+}
+.page-section {
+	@apply radius-md p-2 surface-bg h-full;
+}
+.page-section-stiff {
+	@apply radius-md p-5 surface-bg h-full;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
-  body {
-    color: white;
-    background: black;
-  }
+.hide-entries {
+	text-security: disc;
+	-webkit-text-security: disc;
+	-moz-text-security: disc;
+}
+
+/** Styling scroll bars */
+/* width */
+::-webkit-scrollbar {
+	width: 1px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: transparent;
+	/* background: var(--secondary); */
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: var(--primary);
+}
+
+/* * Styling number inputs */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+	-moz-appearance: textfield;
+	color-scheme: dark;
+}
+
+/** Shimmering effect for 'huge-text' */
+.shimmer {
+	color: rgba(255, 255, 255, 0.1);
+	background: -webkit-gradient(
+		linear,
+		left top,
+		right top,
+		from(#222),
+		to(#222),
+		color-stop(0.5, #fff)
+	);
+	background: -moz-gradient(
+		linear,
+		left top,
+		right top,
+		from(#222),
+		to(#222),
+		color-stop(0.5, #fff)
+	);
+	background: gradient(
+		linear,
+		left top,
+		right top,
+		from(#222),
+		to(#222),
+		color-stop(0.5, #fff)
+	);
+	-webkit-background-size: 125px 100%;
+	-moz-background-size: 125px 100%;
+	background-size: 125px 100%;
+	-webkit-background-clip: text;
+	-moz-background-clip: text;
+	background-clip: text;
+	-webkit-animation-name: shimmer;
+	-moz-animation-name: shimmer;
+	animation-name: shimmer;
+	-webkit-animation-duration: 2s;
+	-moz-animation-duration: 2s;
+	animation-duration: 2s;
+	-webkit-animation-iteration-count: infinite;
+	-moz-animation-iteration-count: infinite;
+	animation-iteration-count: infinite;
+	background-repeat: no-repeat;
+	background-position: 0 0;
+	background-color: #222;
+}
+@-moz-keyframes shimmer {
+	0% {
+		background-position: top left;
+	}
+	100% {
+		background-position: top right;
+	}
+}
+@-webkit-keyframes shimmer {
+	0% {
+		background-position: top left;
+	}
+	100% {
+		background-position: top right;
+	}
+}
+@-o-keyframes shimmer {
+	0% {
+		background-position: top left;
+	}
+	100% {
+		background-position: top right;
+	}
+}
+@keyframes shimmer {
+	0% {
+		background-position: top left;
+	}
+	100% {
+		background-position: top right;
+	}
 }
